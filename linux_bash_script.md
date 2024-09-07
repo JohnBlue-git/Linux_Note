@@ -31,7 +31,7 @@ This sequence of characters is the shebang. It tells the operating system that t
 
 ## Common
 
-<details>
+<details open>
 <summary># % //</summary>
 
 ```console
@@ -43,7 +43,7 @@ echo ${str//,}
 ```
 </details>
 
-<details>
+<details open>
 <summary>$  ${}  $()  $(( ))</summary>
 
 ```console
