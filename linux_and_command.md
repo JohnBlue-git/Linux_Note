@@ -1,7 +1,7 @@
 
 # Linux environment related
 
-## machine x64 (x86_64) or arm architecture ?
+## Machine is x64 (x86_64) or arm architecture ?
 ```console
 # output: x86_64 or arm / aarch64
 uname -m
@@ -29,7 +29,7 @@ uname -r
 sudo apt-get install linux-headers-$(uname -r)
 ```
 
-## linux directory structure
+## Linux directory structure
 Most Linux distribution will follow "Filesystem Hierarchy Standard, FHS": \
 /bin, /sbin  /bin 主要放置一般使用者可以操作的指令，/sbin 放置系統管理員可以操作的指令。連結到 /usr/bin，/usr/sbin \
 /boot  主要放置開機相關檔案 \
@@ -47,7 +47,7 @@ Most Linux distribution will follow "Filesystem Hierarchy Standard, FHS": \
 /run  系統進行服務軟體運作管理處 \
 /srv  通常是放置開發的服務（service），如：網站服務 www 等 \
 
-## linux authority
+## Linux authority
 ```console
 # to change user
 su <user>
@@ -104,7 +104,7 @@ file /usr/bin/ipmitool
 <img width="1017" alt="%E6%88%AA%E5%9C%96%202024-01-07%20%E4%B8%8B%E5%8D%8812 16 23" src="https://github.com/user-attachments/assets/61608c1a-dd08-405e-9e2a-765d794c1aa1">
 <img width="1009" alt="%E6%88%AA%E5%9C%96%202024-01-07%20%E4%B8%8B%E5%8D%8812 15 03" src="https://github.com/user-attachments/assets/a92d5c74-6248-41bd-b21d-fa0ea9f8d356">
 
-## linux internet related
+## Linux internet related
 ```console
 # ping
 ping <IP>
@@ -150,7 +150,7 @@ https://emmielin.medium.com/dns-查詢流程概念筆記-3a420460d396
 
 # Common command
 
-## reveal
+## Reveal
 
 <details>
 <summary>top htop ps</summary>
@@ -461,7 +461,7 @@ https://www.runoob.com/linux/linux-comm-awk.html
 
 
 
-## transmission
+## Transmission
 
 ### scp
 ```console
@@ -476,7 +476,7 @@ wget -r --user="user@login" --password="..." ftp://server.com/
 
 
 
-## others
+## Others
 
 ### soft link
 ```console
@@ -543,7 +543,7 @@ minicom -wD /dev/ast2600evb.1021
 
 
 
-# Some reference (not yet orgrnize)
+# some reference (not yet orgrnize)
 ```console
 https://blog.niclin.tw/2017/03/19/linux-%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4/
 https://s40723210.github.io/cd2020/content/Linux%20%E6%8C%87%E4%BB%A4.html
