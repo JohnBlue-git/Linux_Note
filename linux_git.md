@@ -1,16 +1,40 @@
 ## Git command
 
 ### Configuration
+ref: https://dev.to/mrtrom/git-config-a-beginners-guide-with-advanced-tips-393f#:~:text=Open%20your%20terminal%20and%20type:%20git
 ```console
-git config <--global> user.name "Your Name"
-git config <--global> user.email "your.email@example.com"
+# Basic configuration
+# (remove the --global parameter if you only want to do this for a specific repository)
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+git config --global user.username "yourusername"
 
-# For example, to add --rebase as default of git pull
-# .git/config or ~/.gitconfig
+# Signing configuration
+git config --global gpg.format ssh
+git config --global user.signingKey ~/.ssh/id_rsa.pub
+git log --show-signature --oneline
+
+# Check your Git configuration
+git config --list
+
+# Other configuration
+
+# To add --rebase as default of git pull
+# (in ~/.git/config or ~/.gitconfig)
 [branch "master"]
   remote = origin
   merge = refs/heads/master
   rebase = true
+# or
+git config --global --bool pull.rebase true
+
+# To configurue merge (in ~/.git/config or ~/.gitconfig)
+[merge]
+    ff = no
+    commit = no
+# or
+git config --global merge.commit no
+git config --global merge.ff no
 ```
 ### Starting a Repository
 ```console
@@ -96,6 +120,9 @@ git checkout -t <origin/kirkstone> -b <my-kirkstone>
 # To merge <feature-branch> into <main>
 git checkout <main>
 git merge <feature-branch>
+
+# If you prefer to keep the feature branch history but still want to merge it into the main branch
+git merge --no-ff <feature-branch>
 ```
 ### Remote Repositories
 ```console
