@@ -36,6 +36,13 @@ git config --global --bool pull.rebase true
 git config --global merge.commit no
 git config --global merge.ff no
 ```
+
+### .gitignore
+The purpose of a .gitignore file is to specify which files and directories Git should ignore in a project. This helps keep your repository clean and free from unnecessary files that do not need to be tracked.
+\
+\
+Good place to find sample .gitignore: https://github.com/github/gitignore
+
 ### Starting a Repository
 ```console
 # Create an empty Git repository or reinitialize an existing one.
@@ -205,3 +212,34 @@ git archive --format=zip --output=archive.zip HEAD path/to/directory
 https://tsengbatty.medium.com/git-%E8%B8%A9%E5%9D%91%E7%B4%80%E9%8C%84-%E4%BA%8C-git-clone-with-ssh-keys-%E6%88%96-https-%E8%A8%AD%E5%AE%9A%E6%AD%A5%E9%A9%9F-bdb721bd7cf2
 ### supplement: git push 
 https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository
+
+### Commit common regulation
+message structure
+```console
+<type>(<scope>): <subject>
+<body>
+<footer>
+```
+type: \
+- common:
+  - feat: New features, new features
+  - fix: Fix the bug
+  - perf: Changes to the code to improve performance (optimization of program performance without affecting the internal behavior of the code)
+  - refactor: code refactoring (refactoring, code modification without affecting the internal behavior and functionality of the code)
+  - docs: Document modifications
+  - style: code formatting modifications, note that they are not css modifications (e.g. semicolon modifications)
+- others
+  - test: A test case is added or modified
+  - build: Affects project builds or dependency modifications
+  - revert: Reverts the last commit
+  - ci: Continuous integration related file modifications
+  - chore: Other modifications (modifications that are not of the above type)
+  - release: Releases a new version
+scope:
+- commits affect the range, e.g. route, component, utils, build...
+subject: 
+- commit subjective
+body:
+- commit specific modifications, which can be divided into multiple lines.
+footer:
+- SOME NOTES, USUALLY A LINK TO A BREAKING CHANGE OR A BUG FIXED.
