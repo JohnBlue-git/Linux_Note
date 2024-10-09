@@ -205,6 +205,21 @@ grep -B 5
 
 # 上下
 grep -C 5
+
+# regex and extract
+#
+$ stat test.txt
+  File: test.txt
+  Size: 28954           Blocks: 64         IO Block: 4096   regular file
+Device: 705h/1797d      Inode: 1310792     Links: 1
+Access: (0666/-rw-rw-rw-)  Uid: ( 1000/codespace)   Gid: ( 1000/codespace)
+Access: 2024-10-09 07:05:39.825899553 +0000
+Modify: 2024-10-09 07:05:38.857899504 +0000
+Change: 2024-10-09 07:05:38.857899504 +0000
+ Birth: -
+# then
+$ stat test.txt | grep -Eo "Size: [0-9]+" | grep -Eo "[0-9]+"
+28954
 ```
 </details>
 
