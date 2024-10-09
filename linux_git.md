@@ -235,11 +235,15 @@ type:
   - ci: Continuous integration related file modifications
   - chore: Other modifications (modifications that are not of the above type)
   - release: Releases a new version
+
 scope:
 - commits affect the range, e.g. route, component, utils, build...
+
 subject: 
 - commit subjective
+
 body:
 - commit specific modifications, which can be divided into multiple lines.
+
 footer:
 - some notes, usually a link to a breaking change or a bug fixed.
