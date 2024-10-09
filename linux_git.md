@@ -220,7 +220,7 @@ message structure
 <body>
 <footer>
 ```
-type: \
+type:
 - common:
   - feat: New features, new features
   - fix: Fix the bug
@@ -242,4 +242,4 @@ subject:
 body:
 - commit specific modifications, which can be divided into multiple lines.
 footer:
-- SOME NOTES, USUALLY A LINK TO A BREAKING CHANGE OR A BUG FIXED.
+- some notes, usually a link to a breaking change or a bug fixed.
