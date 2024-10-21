@@ -247,3 +247,17 @@ body:
 
 footer:
 - some notes, usually a link to a breaking change or a bug fixed.
+
+### Benefit to use .patch
+- Modularity and Isolation:
+  - **`.patch`** files allow you to isolate specific changes or fixes. Each patch corresponds to a specific issue or feature, making it easier to manage and track.
+  - When you apply a patch, it modifies only the relevant part of the codebase, keeping other parts untouched. This modularity helps prevent unintended side effects.
+- Collaboration and Code Review:
+  - When you commit directly to the source code, it affects the entire repository. This can be problematic when multiple developers work on different features simultaneously.
+  - **`.patch`** files facilitate collaboration by allowing developers to share their changes without committing them directly. Others can review the patches, provide feedback, and suggest improvements before merging them.
+- Upstream Compatibility:
+  - When you maintain a fork of an open-source project, using patches allows you to stay in sync with upstream changes.
+  - Instead of modifying the original source directly, you apply patches on top of it. This way, you can easily update your fork with the latest changes from the upstream repository.
+- Portability and Distribution:
+  - **`.patch`** files are portable across different systems and environments.
+  - Distributing patches alongside the source code allows others to apply them to their own copies of the codebase, ensuring consistency.
