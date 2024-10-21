@@ -552,8 +552,7 @@ minicom -wD /dev/ast2600evb.1021
 
 sf probe is a command in **U-Boot** that detects and initializes SPI NOR flash. Before using the sf probe, you must ensure that the **SPI flash device** is connected and configured correctly.
 ref: https://blog.csdn.net/u010632165/article/details/117756488
-basic usage:
-```
+```console
 sf probe [bus:]cs [hz] [mode]
 
 sf probe 0:0
