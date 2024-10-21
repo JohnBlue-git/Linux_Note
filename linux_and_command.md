@@ -548,6 +548,22 @@ minicom -wD /dev/ast2600evb.1021
 "ctrl a + x"
 ```
 
+## sf probe
+
+sf probe is a command in **U-Boot** that detects and initializes SPI NOR flash. Before using the sf probe, you must ensure that the **SPI flash device** is connected and configured correctly.
+ref: https://blog.csdn.net/u010632165/article/details/117756488
+basic usage:
+```
+sf probe [bus:]cs [hz] [mode]
+
+sf probe 0:0
+
+# bus: SPI bus number (optional).
+# cs: SPI chip selection number.
+# Hz: SPI bus speed (hertz, default is usually 100KHz).
+# mode: SPI mode (0 to 3), which defines the clock polarity and phase.
+```
+
 ## Virtual USB Drive (not yet try)
 - **Create**: `dd if=/dev/zero of=virtual_usb.img bs=1M count=100`
 - **Format**: `mkfs.ext4 virtual_usb.img`
