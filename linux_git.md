@@ -94,12 +94,6 @@ git diff <commit1> <commit2>
 # create .patch (result from stage changes)
 git add .
 git diff --cached > <patch file>
-# Apply the patch
-git apply --stat <patch file>
-git apply --check <patch file>
-git apply <patch file>
-# Apply the patch without commit history
-git am <patch file>
 
 # show diff (contains commit information)
 git format-patch <branch1> <branch2>
@@ -109,7 +103,13 @@ git format-patch <branch1> <branch2> --stdout > <patch file>
 git format-patch -3
 # Create a patch for a specific commit
 git format-patch -1 <commit hash>
+
+# Check patch
+git apply --stat <patch file>
+git apply --check <patch file>
 # Apply the patch
+git apply <patch file>
+# Apply the patch with commit history
 git am <patch file>
 ```
 ### Branching & Merging
