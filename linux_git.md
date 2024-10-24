@@ -118,7 +118,11 @@ git am <patch file>
 git branch <-a>
 # Create branch
 git branch <branchname>
+# Delete branch
+git branch -d <branchname>
 
+# Switch commit
+git checkout <commit>
 # Switch branch
 git checkout <branchname>
 # Create branch
@@ -160,6 +164,16 @@ git clone -b <branch> <url> <output folder name>
 git push <remote> <branch>
 git push origin main
 ```
+### git cherry-pick
+```console
+# usage:
+#   Actions allow us to select one or more specific commits from one branch and apply them to another
+# comparsion:
+#   cherry-pick: Useful for selecting specific commits individually and applying them to other branches.
+#   rebase: Good for merging branches, keeping commit history clean and intuitive.
+git cherry-pick <commit-hash from another branch>
+```
+
 ### Stash changes to a dirty working directory
 ```console
 # stash
