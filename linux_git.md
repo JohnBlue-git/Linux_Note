@@ -12,7 +12,6 @@ git config --global user.username "yourusername"
 # Signing configuration
 git config --global gpg.format ssh
 git config --global user.signingKey ~/.ssh/id_rsa.pub
-git log --show-signature --oneline
 
 # Check your Git configuration
 git config --list
