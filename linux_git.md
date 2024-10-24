@@ -98,6 +98,8 @@ git diff --cached > <patch file>
 git apply --stat <patch file>
 git apply --check <patch file>
 git apply <patch file>
+# Apply the patch without commit history
+git am <patch file>
 
 # show diff (contains commit information)
 git format-patch <branch1> <branch2>
