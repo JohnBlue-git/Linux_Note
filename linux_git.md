@@ -73,7 +73,7 @@ git commit -m "Commit message"
 # show log
 git log
 # last <count>
-git log -p <count>
+git log -p -<count>
 # Shows commits after a specified time
 git log -since=<time>
 # Shows commits before a specified time
