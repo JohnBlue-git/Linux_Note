@@ -93,6 +93,10 @@ sudo yum install git
 
 https://linux.vbird.org/linux_basic/centos7/0520rpm_and_srpm.php
 
+# check library installed? or version
+# take libboost for example 
+dpkg -l libboost-all-dev
+
 # ldd, List Dynamic Dependencies
 # 用於列出一個執行檔的動態連結庫依賴關係的工具:
 ldd /usr/bin/ipmitool
