@@ -203,5 +203,7 @@ The answer is No !
       return 0;
   }
   ```
-  
+
+  ### Useful references
+  http://www.study-area.org/cyril/opentools/opentools/x1253.html
 
