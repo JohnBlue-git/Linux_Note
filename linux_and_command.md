@@ -93,8 +93,37 @@ sudo yum install git
 
 https://linux.vbird.org/linux_basic/centos7/0520rpm_and_srpm.php
 
+# apt
+列出所有可更新的软件清单命令：sudo apt update
+升级软件包：sudo apt upgrade
+列出可更新的软件包及版本信息：apt list --upgradable
+升级软件包，升级前先删除需要更新软件包：sudo apt full-upgrade
+安装指定的软件命令：sudo apt install <package_name>
+安装多个软件包：sudo apt install <package_1> <package_2> <package_3>
+更新指定的软件命令：sudo apt update <package_name>
+显示软件包具体信息,例如：版本号，安装大小，依赖关系等等：sudo apt show <package_name>
+删除软件包命令：sudo apt remove <package_name>
+清理不再使用的依赖和库文件: sudo apt autoremove
+移除软件包及配置文件: sudo apt purge <package_name>
+查找软件包命令： sudo apt search <keyword>
+列出所有已安装的包：apt list --installed
+列出所有已安装的包的版本信息：apt list --all-versions
+
+# apt VS apt-get
+
+apt:
+- User-friendly: Provides a more user-friendly interface.
+- Unified Commands: Combines the most commonly used commands from apt-get and apt-cache.
+- Progress Bar: Includes a progress bar for operations.
+- Recommended Packages: Automatically installs recommended packages by default.
+
+apt-get (recommended to use in scripts):
+- Script-Friendly: More suited for scripting and automation.
+- More Commands: Includes a wider range of commands and options.
+- Stable Behavior: Maintains behavior and outputs that are expected in scripts over releases.
+
 # check library installed? or version
-# take libboost for example 
+# take libboost for example
 dpkg -l libboost-all-dev
 
 # ldd, List Dynamic Dependencies
