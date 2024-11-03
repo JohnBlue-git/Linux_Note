@@ -533,6 +533,29 @@ wget -r --user="user@login" --password="..." ftp://server.com/
 ln -s <source_directory> <link_name>
 ```
 
+### export
+```console
+# list all environment variable
+export -p
+# declare -x HOME=“/root“
+# declare -x PATH=“/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games“
+# declare -x PWD=“/root“
+# declare -x USER=“root“
+
+# create environment variable
+export NEWVAR
+
+# assign value
+export NEWVAR="value"
+
+# append value
+export NEWVAR+=":value"
+export -p | grep NEWVAR
+
+# delete
+export -n NEWVAR
+```
+
 ### compress
 ```console
 1. **Creating the Archive**:
