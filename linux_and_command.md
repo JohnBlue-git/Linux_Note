@@ -71,10 +71,11 @@ username ALL=(ALL) NOPASSWD:/usr/bin/ipmitool
 # 修改裝置檔案的權限。
 chmod 666 /dev/ipmi0
       777
-chmod u=rwx <file>
+chmod ugo=rwx <file>
+chmod u+=rwx <file>
 
 # change the ownership
-chown <linuxize>:<users> <file1>
+chown <goup>:<user> <file>
 ```
 
 ## install / package / dependency / ...
