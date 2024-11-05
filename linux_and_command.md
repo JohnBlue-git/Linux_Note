@@ -513,8 +513,34 @@ https://www.runoob.com/linux/linux-comm-awk.html
 ## Transmission
 
 ### scp
+the drawback is trassmission will fail when folder structure is equal or more than 3 layers 
 ```console
 scp <-r> <account>@<ip | name>:<source> <destination>
+```
+
+### unison (scp alternative)
+how to install
+```console
+# please install unison on both sides
+sudo apt install unison
+
+# it is possible to have compatibility problem among different linux
+# we can check dependency first
+ldd unison
+# if the dependency on both side are the same
+# we can scp "unison" binary from older Linux to newer Linux
+# such that the binary can be compatible
+```
+how to use (it is a bi-direction sync)
+```console
+# normal execute
+unison ssh://<account>@<ip>//source/ ./target/
+
+# batch execute (without user interaction)
+unison -batch ssh://<account>@<ip>//source/ ./target/
+
+# bactch execute withouut checking (force to sync)
+unison -batch -confirmbigdel=false ssh://<account>@<ip>//source/ ./target/
 ```
 
 ### wget (handles FTP downloads)
@@ -523,7 +549,34 @@ scp <-r> <account>@<ip | name>:<source> <destination>
 wget -r --user="user@login" --password="..." ftp://server.com/
 ```
 
+## Remote Mount
 
+### sshfs
+
+3rd party source code (a bit older with big issue, but it's somewhat fine to use) \
+https://github.com/libfuse/sshfs
+
+how to install
+```console
+# only need to installl on client side
+sudo apt install sshfs
+```
+how to use
+```console
+# create folder on client side
+mkdir target
+
+# link remote source
+sshfs <account>@<ip or name>:/path/to/source target
+
+# check
+mount
+# should see ...
+# <my account>@your.host.com:/path/to/source on /home/account/target type fuse.sshfs (rw,nosuid,nodev,user=<my account>)
+
+# unmount
+fusermount -u target
+```
 
 ## Others
 
@@ -555,6 +608,16 @@ export -p | grep NEWVAR
 
 # delete
 export -n NEWVAR
+```
+
+### related to current account enviroment
+```console
+# use ~
+~/target/path
+
+# for example
+echo $USER # john
+ls ~/bin # /usr/local/bin or /usr/john/bin
 ```
 
 ### compress
