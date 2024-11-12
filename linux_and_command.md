@@ -564,10 +564,16 @@ sudo apt install sshfs
 how to use
 ```console
 # create folder on client side
-mkdir target
+mkdir /path/to/mount_point
 
 # link remote source
-sshfs <account>@<ip or name>:/path/to/source target
+sshfs <account>@<ip or name>:/path/to/source /path/to/mount_point
+
+# link remote source (in robust manner)
+sshfs -o reconnect,<account>,ServerAliveInterval=15,ServerAliveCountMax=3 <account>@<ip or name>:/path/to/source /path/to/mount_point
+# reconnect: Automatically reconnects if the connection is lost.
+# ServerAliveInterval=15: Sends a keepalive packet every 15 seconds.
+# ServerAliveCountMax=3: Allows up to 3 missed keepalive packets before disconnecting.
 
 # check
 mount
@@ -575,7 +581,7 @@ mount
 # <my account>@your.host.com:/path/to/source on /home/account/target type fuse.sshfs (rw,nosuid,nodev,user=<my account>)
 
 # unmount
-fusermount -u target
+fusermount -u /path/to/mount_point
 ```
 
 ## Others
