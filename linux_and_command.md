@@ -583,6 +583,20 @@ mount
 # unmount
 fusermount -u /path/to/mount_point
 ```
+re-mount when reboot
+```bash
+#!/bin/bash
+
+# unmount
+fusermount -u /home/yujen/sshfs-yujen
+# sshfs
+sshfs -o password_stdin,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 yujen@192.168.9.197:/media/disk4T/yujen /home/yujen/sshfs-yujen <<< "yujen"
+```
+re-mount when reboot (crontab)
+```bash
+# crontab -e
+@reboot /path/to/script.sh
+```
 
 ## Others
 
