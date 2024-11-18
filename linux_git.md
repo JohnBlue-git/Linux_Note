@@ -59,6 +59,8 @@ git reset HEAD
 
 # unstage specific
 git rm <-rf> --cached <file/ folder>
+# unstage specific (safer way)
+git checkout HEAD -- <file/ folder>
 ```
 ### Show the status of working directory and staging area
 ```console
