@@ -523,6 +523,67 @@ fi
 ```
 </details>
 
+<details>
+<summary>auto moute remote folder</summary>
+
+when_reboot.sh
+```console
+#!/bin/bash
+
+# unmount
+echo "Attempting to unmount /home/yujen/sshfs-yujen ..."
+./force_unmount.sh /home/yujen/sshfs-yujen
+
+# sshfs
+echo "Attempting to mount /home/yujen/sshfs-yujen ..."
+mkdir /home/yujen/sshfs-yujen
+sshfs -o password_stdin,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 yujen@192.168.9.191:/media/disk4T/yujen /home/yujen/sshfs-yujen <<< "password"
+```
+force_unmount.sh
+```console
+#!/bin/bash
+
+PASSWORD="yujen"
+
+MOUNT_POINT="$1"
+
+if [ -z "$MOUNT_POINT" ]; then
+    echo "Usage: $0 /path/to/mount_point"
+    exit 1
+fi
+
+#echo "Attempting to unmount $MOUNT_POINT ..."
+# Try to unmount the mount point
+#echo $PASSWORD | sudo fusermount -u "$MOUNT_POINT"
+
+
+echo "Attempting to kill first then unmount $MOUNT_POINT ..."
+# If unmount fails, find and kill processes using the mount point
+if mountpoint -q "$MOUNT_POINT"; then
+    echo "$MOUNT_POINT is still mounted. Finding processes using it ..."
+    lsof "$MOUNT_POINT"
+
+    echo "Killing processes using $MOUNT_POINT..."
+    echo $PASSWORD | sudo lsof -t "$MOUNT_POINT" | xargs -I {} sudo kill -9 {}
+
+    # Retry unmounting forcefully
+    echo "Attempting to forcefully unmount $MOUNT_POINT..."
+    echo $PASSWORD | sudo fusermount -uz "$MOUNT_POINT"
+
+    if mountpoint -q "$MOUNT_POINT"; then
+        echo "Failed to unmount $MOUNT_POINT. Please check for any remaining processes."
+    else
+        echo "$MOUNT_POINT successfully unmounted."
+    fi
+else
+    echo "$MOUNT_POINT successfully unmounted."
+fi
+
+echo "deleting $MOUNT_POINT ..."
+rm -rf $MOUNT_POINT
+```
+</details>
+
 ## Optional
 
 ### How to restart via script
