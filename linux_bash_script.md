@@ -32,6 +32,34 @@ This sequence of characters is the shebang. It tells the operating system that t
 ## Common
 
 <details open>
+<summary>string comparision</summary>
+
+```console
+# with cmp
+#
+# | (Pipe): it takes the output of the command on its left
+# cmp -s: The cmp command compares two files byte by byte.
+#         The -s (silent) option tells cmp to suppress any output and only return the exit status:
+#         0 if the files are identical.
+#         1 if the files differ.
+#         >1 if there is an error.
+# -: The - tells cmp to read the standard input, which is coming from the echo "$string1" command through the pipe.
+# <(echo "$string2"): It creates a temporary output of echo "$string2" and passes that temporary file's name to cmp.
+#
+echo "string1" | cmp -s - <(echo "string2") && echo "Strings are equal" || echo "Strings are not equal"
+
+# with grep
+#
+# -q (Quiet): Suppresses the normal output of grep and only returns an exit status.
+#             0: The pattern was found.
+#             1: The pattern was not found.
+#             >1: Error
+#
+echo "string1" | grep -q "string2" && echo "String 1 contains String 2" || echo "String 1 does not contain String 2"
+```
+</details>
+
+<details open>
 <summary># % //</summary>
 
 ```console
