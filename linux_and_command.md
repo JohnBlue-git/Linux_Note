@@ -669,8 +669,25 @@ crontab -e編輯
 crontab -r刪除
 
 # setting
-<time> <binary>
-...
+*     *     *     *     *  command to be executed
+-     -     -     -     -
+|     |     |     |     |
+|     |     |     |     +----- Day of the week (0 - 7) (Sunday=0 or 7)
+|     |     |     +------- Month (1 - 12)
+|     |     +--------- Day of month (1 - 31)
+|     +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+
+# Every Minute
+* * * * * /path/to/command
+# Every Hour:
+0 * * * * /path/to/command
+# Weekly on Sunday at 1 AM
+0 1 * * 0 /path/to/command
+
+
+# checking whether the contents in the table are executed?
+sudo grep CRON /var/log/syslog | grep ... 
 ```
 
 ### usb access with minicom
