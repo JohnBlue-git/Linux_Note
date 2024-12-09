@@ -673,20 +673,33 @@ crontab -r刪除
 ...
 ```
 
-
-
-# Special
-
-## BMC console related
+### usb access with minicom
 ```console
-# ssh
-ssh <yujen.lan@192.168.11.1>
-"crtl + D"
-
 # minicom
 minicom -wD /dev/ast2600evb.1021
 "ctrl a + x"
 ```
+
+### remote access with ssh
+```console
+# ssh
+ssh <yujen.lan@192.168.11.1>
+
+# To exit
+exit
+# or
+crtl + D
+
+# with pass (but this command is not always available)
+sshpass -p <password> ssh <user>@<host>
+
+# without asking permission (but still need password)
+ssh -o StrictHostKeyChecking=no -l <user> <host>
+```
+
+
+
+# Special
 
 ## sf probe
 
