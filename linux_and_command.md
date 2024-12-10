@@ -661,6 +661,43 @@ tar -xvpf archive.tar`
 tar -tf filename.tar.gz
 ```
 
+### systemctl / service
+```console
+# systemctl
+systemctl status <service>
+systemctl start <service>
+systemctl stop <service>
+systemctl restart <service>
+
+# service
+service <service> status
+service <service> start
+service <service> stop
+service <service> restart
+
+# Example service configuraition file
+# /etc/systemd/system/.../bmcweb.service
+[Unit]
+Description=Start bmcweb server
+
+Wants=network.target
+After=network.target
+Wants=rcmd.service
+After=rcmd.service
+Wants=phosphor-ipmi-host.service
+After=phosphor-ipmi-host.service
+PartOf=rcmd.service
+
+[Service]
+ExecReload=kill -s HUP $MAINPID
+ExecStart=/usr/bin/bmcweb
+Type=simple
+WorkingDirectory=/home/root
+
+[Install]
+WantedBy=network.target
+```
+
 ### crontab
 ```console
 # common
