@@ -722,6 +722,15 @@ crontab -r刪除
 # Weekly on Sunday at 1 AM
 0 1 * * 0 /path/to/command
 
+# authencation
+# user level
+crontab -e
+# root level
+crontab -e
+
+# notice that:
+# it is still necessary to add sudo for priviledged command
+* * * * * sudo /path/to/priviledged_command
 
 # checking whether the contents in the table are executed?
 sudo grep CRON /var/log/syslog | grep ... 
