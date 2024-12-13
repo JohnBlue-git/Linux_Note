@@ -47,6 +47,14 @@ Most Linux distribution will follow "Filesystem Hierarchy Standard, FHS": \
 /run  系統進行服務軟體運作管理處 \
 /srv  通常是放置開發的服務（service），如：網站服務 www 等 \
 
+## Linux user
+sudo deluser <account>
+sudo adduser <account>
+sudo adduser <account> sudo
+https://weirenxue.github.io/2021/06/17/user_linux_sudo/
+sudo usermod -aG sudo <username>
+https://askubuntu.com/questions/2214/how-do-i-add-a-user-to-the-sudo-group
+
 ## Linux authority
 ```console
 # to change user
