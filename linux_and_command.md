@@ -190,13 +190,13 @@ https://emmielin.medium.com/dns-查詢流程概念筆記-3a420460d396
 
 ## Systemd vs Systemctl
 - Systemd and Systemctl are two essential components in the Linux operating system, often used interchangeably but serving different purposes.
-      - Systemd is a system and service manager responsible for initializing the system, managing services, and handling system events. It replaces the traditional SysV init system and provides a more efficient and reliable way to manage system services. Systemd uses unit files to define how services should be started, stopped, and managed. These unit files specify the behavior of each service, including its dependencies, startup order, and resource limits
-      - Systemctl, on the other hand, is a command-line utility used to manage system services in Linux. It is part of the Systemd system and service manager. With Systemctl, users can start, stop, restart, enable, disable, and check the status of services running on their system. It provides a simple and efficient way to manage system services without the need for complex commands
+      -- Systemd is a system and service manager responsible for initializing the system, managing services, and handling system events. It replaces the traditional SysV init system and provides a more efficient and reliable way to manage system services. Systemd uses unit files to define how services should be started, stopped, and managed. These unit files specify the behavior of each service, including its dependencies, startup order, and resource limits
+      -- Systemctl, on the other hand, is a command-line utility used to manage system services in Linux. It is part of the Systemd system and service manager. With Systemctl, users can start, stop, restart, enable, disable, and check the status of services running on their system. It provides a simple and efficient way to manage system services without the need for complex commands
 - Key Differences
-      - Purpose: Systemd: Manages the system's boot process, handles daemons, and manages system services. Systemctl: Interacts with Systemd to control services.
-      - Functionality: Systemd: Responsible for initializing the system, starting services in parallel, and monitoring system resources. Systemctl: Used to start, stop, restart, enable, disable, and check the status of services.
-      - Unit Files: Systemd: Uses unit files to define how services should be managed. Systemctl: Reads these unit files to determine how to handle each service.
-      - Advanced Features: Systemd: Supports socket activation, which allows services to be started on-demand when a connection is made to a specific socket. It also provides tools for managing system resources, such as cgroups, which allow users to set resource limits for services and prevent resource contention^2^. Systemctl: Provides detailed information about each service, including its status, PID, memory usage, and more
+      -- Purpose: Systemd: Manages the system's boot process, handles daemons, and manages system services. Systemctl: Interacts with Systemd to control services.
+      -- Functionality: Systemd: Responsible for initializing the system, starting services in parallel, and monitoring system resources. Systemctl: Used to start, stop, restart, enable, disable, and check the status of services.
+      -- Unit Files: Systemd: Uses unit files to define how services should be managed. Systemctl: Reads these unit files to determine how to handle each service.
+      -- Advanced Features: Systemd: Supports socket activation, which allows services to be started on-demand when a connection is made to a specific socket. It also provides tools for managing system resources, such as cgroups, which allow users to set resource limits for services and prevent resource contention^2^. Systemctl: Provides detailed information about each service, including its status, PID, memory usage, and more
 
 
 # Common command
