@@ -224,10 +224,13 @@ ls -l | tail -n 5
 ls -l | tail -n 5 | cut -c 2-10 --complement
 https://blog.gtwang.org/linux/linux-cut-command-tutorial-and-examples/
 
-# 可以一直印出來
+# count how many
+ls -1 /path/to/folder | wc -l
+
+# keep printing
 $tail -f xxx.log
 
-#
+# cat
 cat xxx.txt
 ```
 </details>
