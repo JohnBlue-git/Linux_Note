@@ -663,7 +663,7 @@ echo $USER # john
 ls ~/bin # /usr/local/bin or /usr/john/bin
 ```
 
-### compress
+### compress (tar)
 ```console
 1. **Creating the Archive**:
 tar -cvpf archive.tar /path/to/directory`
@@ -682,6 +682,15 @@ tar -xvpf archive.tar`
 
 3. To view the contents of a tar file in Linux without extracting it,
 tar -tf filename.tar.gz
+```
+
+### compress (zip)
+```console
+# 將 data 目錄下所有檔案及副目錄壓儲到 file.zip:
+zip -r file data/*
+
+# 用 unzip 將 file.zip 壓縮檔內所有檔案及目錄解壓到當前目錄:
+unzip file.zip
 ```
 
 ### systemctl / service
