@@ -217,6 +217,30 @@ HEAD@{2}
 # refers to the commit that is two parents before the current HEAD.
 HEAD~2
 ```
+
+### Rebase
+To move or combine a sequence of commits to a new base commit. It's a powerful tool for altering commit history in a linear sequence.
+```console
+# command
+git rebase -i HEAD~5
+# --interactive or -i: The -i flag stands for "interactive". When you use this flag, Git opens an interactive editor where you can control how each commit will be handled during the rebase process.
+# HEAD~5: This part specifies the range of commits to be included in the rebase. HEAD represents the latest commit on the current branch, and ~5 indicates the last 5 commits before HEAD.
+```
+
+After command git rebase, Git will open the editor. In the interactive editor, you can choose actions for each commit such as:
+- pick: Use the commit as is (default action).
+- reword: Use the commit, but edit the commit message.
+- edit: Use the commit, but stop for amending.
+- squash: Combine this commit with the previous one.
+- fixup: Combine this commit with the previous one, but discard the commit message.
+- drop: Remove the commit entirely.
+
+Here's an example of what the interactive editor might look like:
+```console
+pick 123abc Commit message 1
+drop 456def Commit message 2
+```
+
 ### Archive
 ```console
 # git archive 是一个用于创建 Git 仓库中某个提交（commit）或分支（branch）的归档文件的命令。它生成一个包含指定内容的归档文件，比如 ZIP 或 TAR 文件。这个功能很有用，例如当你需要将某个特定版本的代码打包分发给其他人时。
