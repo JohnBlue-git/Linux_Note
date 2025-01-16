@@ -681,6 +681,9 @@ time -o output.txt <your_command>
 
 # --verbose: Display detailed resource usage statistics.
 time --verbose <your_command>
+
+# advance time command
+https://stackoverflow.com/questions/18215389/how-do-i-measure-request-and-response-times-at-once-using-curl
 ```
 
 ## Others
