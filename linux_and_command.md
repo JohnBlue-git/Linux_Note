@@ -621,6 +621,36 @@ re-mount when reboot (crontab)
 @reboot /path/to/script.sh
 ```
 
+### Log
+**journalctl** is a command line utility used to query and display logs from the systemd journal. It's incredibly useful for system administrators and anyone who needs to troubleshoot issues on Linux systems that use systemd.
+```console
+# Show All Logs
+journalctl
+
+# Show Logs Since Boot
+journalctl -b
+# for the previous boot
+journalctl -b -1
+
+# Follow Logs (Real-Time)
+journalctl -f
+
+# Show Logs for a Specific Unit
+journalctl -u <service-name>
+
+# Show Logs for a Specific Time Range
+journalctl --since "2023-01-01" --until "2023-01-02"
+
+# Show Kernel Logs (show kernel log only)
+journalctl -k
+
+# Limit Output to a Certain Number of Lines
+journalctl -n 100
+
+# Output in Reverse Order
+journalctl -r
+```
+
 ## Others
 
 ### soft link
