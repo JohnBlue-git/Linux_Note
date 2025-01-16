@@ -649,6 +649,12 @@ journalctl -n 100
 
 # Output in Reverse Order
 journalctl -r
+
+# Clear log
+journalctl --vacuum-time=60s
+
+# Display log usage status
+journalctl --disk-usage
 ```
 
 ## Others
