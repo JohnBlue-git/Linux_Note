@@ -657,6 +657,32 @@ journalctl --vacuum-time=60s
 journalctl --disk-usage
 ```
 
+## Time (elaspsed)
+```console
+# Output Explanation
+time ls
+# real: The total elapsed time (wall clock time) it took to execute the command.
+# user: The amount of CPU time spent in user mode.
+# sys: The amount of CPU time spent in system (kernel) mode.
+
+# Basic usage
+# time <command>
+time -v curl -k -u root:0penBmc -X GET https://localhost/redfish/v1
+# with pipeline
+time (find / -name "example.txt" | grep "example")
+# with bash
+time bash your_script.sh
+
+# -p: Format the output in a POSIX-compliant way.
+time -p <your_command>
+
+# -o: Redirect the output to a file.
+time -o output.txt <your_command>
+
+# --verbose: Display detailed resource usage statistics.
+time --verbose <your_command>
+```
+
 ## Others
 
 ### soft link
