@@ -621,71 +621,6 @@ re-mount when reboot (crontab)
 @reboot /path/to/script.sh
 ```
 
-### Log
-**journalctl** is a command line utility used to query and display logs from the systemd journal. It's incredibly useful for system administrators and anyone who needs to troubleshoot issues on Linux systems that use systemd.
-```console
-# Show All Logs
-journalctl
-
-# Show Logs Since Boot
-journalctl -b
-# for the previous boot
-journalctl -b -1
-
-# Follow Logs (Real-Time)
-journalctl -f
-
-# Show Logs for a Specific Unit
-journalctl -u <service-name>
-
-# Show Logs for a Specific Time Range
-journalctl --since "2023-01-01" --until "2023-01-02"
-
-# Show Kernel Logs (show kernel log only)
-journalctl -k
-
-# Limit Output to a Certain Number of Lines
-journalctl -n 100
-
-# Output in Reverse Order
-journalctl -r
-
-# Clear log
-journalctl --vacuum-time=60s
-
-# Display log usage status
-journalctl --disk-usage
-```
-
-## Time (elaspsed)
-```console
-# Output Explanation
-time ls
-# real: The total elapsed time (wall clock time) it took to execute the command.
-# user: The amount of CPU time spent in user mode.
-# sys: The amount of CPU time spent in system (kernel) mode.
-
-# Basic usage
-# time <command>
-time -v curl -k -u root:0penBmc -X GET https://localhost/redfish/v1
-# with pipeline
-time (find / -name "example.txt" | grep "example")
-# with bash
-time bash your_script.sh
-
-# -p: Format the output in a POSIX-compliant way.
-time -p <your_command>
-
-# -o: Redirect the output to a file.
-time -o output.txt <your_command>
-
-# --verbose: Display detailed resource usage statistics.
-time --verbose <your_command>
-
-# advance time command
-https://stackoverflow.com/questions/18215389/how-do-i-measure-request-and-response-times-at-once-using-curl
-```
-
 ## Others
 
 ### soft link
@@ -833,6 +768,71 @@ crontab -e
 sudo grep CRON /var/log/syslog | grep ... 
 ```
 
+### Log
+**journalctl** is a command line utility used to query and display logs from the systemd journal. It's incredibly useful for system administrators and anyone who needs to troubleshoot issues on Linux systems that use systemd.
+```console
+# Show All Logs
+journalctl
+
+# Show Logs Since Boot
+journalctl -b
+# for the previous boot
+journalctl -b -1
+
+# Follow Logs (Real-Time)
+journalctl -f
+
+# Show Logs for a Specific Unit
+journalctl -u <service-name>
+
+# Show Logs for a Specific Time Range
+journalctl --since "2023-01-01" --until "2023-01-02"
+
+# Show Kernel Logs (show kernel log only)
+journalctl -k
+
+# Limit Output to a Certain Number of Lines
+journalctl -n 100
+
+# Output in Reverse Order
+journalctl -r
+
+# Clear log
+journalctl --vacuum-time=60s
+
+# Display log usage status
+journalctl --disk-usage
+```
+
+### Time (elaspsed)
+```console
+# Output Explanation
+time ls
+# real: The total elapsed time (wall clock time) it took to execute the command.
+# user: The amount of CPU time spent in user mode.
+# sys: The amount of CPU time spent in system (kernel) mode.
+
+# Basic usage
+# time <command>
+time -v curl -k -u root:0penBmc -X GET https://localhost/redfish/v1
+# with pipeline
+time (find / -name "example.txt" | grep "example")
+# with bash
+time bash your_script.sh
+
+# -p: Format the output in a POSIX-compliant way.
+time -p <your_command>
+
+# -o: Redirect the output to a file.
+time -o output.txt <your_command>
+
+# --verbose: Display detailed resource usage statistics.
+time --verbose <your_command>
+
+# advance time command
+https://stackoverflow.com/questions/18215389/how-do-i-measure-request-and-response-times-at-once-using-curl
+```
+
 ### usb access with minicom
 ```console
 # minicom
@@ -860,6 +860,80 @@ ssh -o StrictHostKeyChecking=no -l <user> <host>
 
 
 # Special
+
+## minicom
+Minicom is a text-based terminal emulator that is used for serial communication. It is particularly useful for debugging and configuring hardware devices like routers, switches, and embedded systems that communicate over serial ports.
+<details>
+<summary>basic usage</summary>
+
+```console
+# Open a Serial Port:
+sudo minicom --device /dev/ttyUSB0
+
+# Specify Baud Rate: (with a baud rate of 115200 bits per second)
+sudo minicom --device /dev/ttyUSB0 --baudrate 115200
+
+# Configuration
+sudo minicom -s
+
+# Run Minicom with a Configuration File:
+sudo minicom -c /etc/minicom/minirc.dfl
+
+# Advanced Usage
+# Capture Output to a File:
+sudo minicom --device /dev/ttyUSB0 --baudrate 115200 --capture /path/to/capture_file.log
+
+# Advanced Usage
+# Use Meta Key: (allows you to use the Meta or ALT key as the command key)
+sudo minicom --metakey
+
+# Additional Options
+# -b <baudrate>: Sets the baud rate.
+# -D <device_name>: Specifies the device name for the serial port.
+# -h: Shows a list of arguments that minicom accepts.
+# -o: Skips initialization.
+# -m: Overrides the command key with the Meta or ALT key.
+# -z: Uses terminal status line.
+# -l: Translates IBM line characters to ASCII.
+# -w: Turns on line-wrap.
+# -H: Turns on output in hex mode.
+# -a: Handles terminal attributes.
+```
+</details>
+<details>
+<summary>basic usage within session</summary>
+
+```console
+When you're inside a minicom session, the Ctrl+A key combination (also called the "command key") activates a set of commands that you can use to control the session. Here's a list of common Ctrl+A commands:
+
+Ctrl+A, A: Toggles the linefeed.
+Ctrl+A, B: Sends a break signal.
+**Ctrl+A, C**: Clears the screen.
+Ctrl+A, D: Turns local echo on or off.
+Ctrl+A, E: Turns CRT echo on or off.
+Ctrl+A, F: Enables or disables software flow control.
+Ctrl+A, G: Generates a break condition.
+Ctrl+A, H: Hangs up the connection.
+Ctrl+A, I: Initializes the modem.
+Ctrl+A, J: Jumps to a sub-menu or script.
+Ctrl+A, K: Turns capture on or off (log output to a file).
+**Ctrl+A, L**: Turns logging on or off.
+Ctrl+A, M: Toggles the monitor line status.
+Ctrl+A, N: Switches to the next screen.
+Ctrl+A, O: Changes the linefeed mode.
+Ctrl+A, P: Turns on or off printing of the screen.
+Ctrl+A, Q: Resets the modem.
+Ctrl+A, R: Receives a file using one of the transfer protocols (e.g., Xmodem, Ymodem, Zmodem).
+**Ctrl+A, S**: Sends a file using one of the transfer protocols (e.g., Xmodem, Ymodem, Zmodem).
+Ctrl+A, T: Initializes the terminal.
+Ctrl+A, U: Flips between uppercase and lowercase.
+Ctrl+A, V: Enters the Goto mode.
+**Ctrl+A, X**: Exits the current session and returns to the main menu.
+Ctrl+A, W: Toggles line wrap.
+Ctrl+A, Y: Swaps the transmit speed.
+**Ctrl+A, Z**: Shows help with a list of these commands.
+```
+</details>
 
 ## sf probe
 
