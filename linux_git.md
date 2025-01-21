@@ -112,6 +112,24 @@ git apply --check <patch file>
 git apply <patch file>
 # Apply the patch with commit history
 git am <patch file>
+
+# Git blame (a useful tool for investigating the history of changes to a file.)
+# Basic Usage
+git blame <filename>
+# The output of git blame looks something like this:
+# commit_hash (AuthorName YYYY-MM-DD HH:MM:SS +timezone) LineNumber) Content of the line
+
+# -L: Limit the blame to specific line ranges.
+git blame -L 10,20 <filename>
+
+# -e: Show the email addresses of the authors instead of the usernames.
+git blame -e <filename>
+
+# -C: Detect moved or copied lines within the repository.
+git blame -C <filename>
+
+# -M: Detect moved or copied lines within the same file.
+git blame -M <filename>
 ```
 ### Branching & Merging
 ```console
