@@ -980,6 +980,17 @@ sf probe 0:0
 - **Unmount**: `sudo umount /mnt/virtual_usb`
 - **Delete**: `rm virtual_usb.img`
 
+## To delete directories or files created on or after a specific date and time
+! -path . ! -path .. : to skip the current and parent directories.
+. : Represents the current directory.
+-type d : Specifies that you are looking for directories.
+-newermt "2025-02-20 13:30" : Finds files or directories with a modification time on or after "2025-02-20 13:30".
+-prune : Ensures that find doesn't recurse into directories that match the criteria.
+-exec rm -rf {} + : Executes rm -rf on each directory found.
+```console
+find . ! -path . ! -path .. -type d -newermt "2025-02-20 13:30" -prune -exec rm -rf {} +
+```
+
 
 
 # some reference (not yet orgrnize)
