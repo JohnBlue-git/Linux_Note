@@ -263,6 +263,10 @@ grep -B 5
 # 上下
 grep -C 5
 
+# -r (or --recursive): This option tells grep to search recursively through all directories and subdirectories.
+# -n (or --line-number): This option causes grep to display the line number where the pattern is found within each file.
+grep -rn
+
 # regex and extract
 #
 $ stat test.txt
@@ -277,6 +281,9 @@ Change: 2024-10-09 07:05:38.857899504 +0000
 # then
 $ stat test.txt | grep -Eo "Size: [0-9]+" | grep -Eo "[0-9]+"
 28954
+
+# To find strings that match the pattern "Machine ... found" using grep with a regular expression, you can use the following command:
+grep -E 'Machine .* found' file.txt
 ```
 </details>
 
