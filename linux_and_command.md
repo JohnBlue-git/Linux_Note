@@ -804,6 +804,21 @@ journalctl --vacuum-time=60s
 journalctl --disk-usage
 ```
 
+### Tee
+Absolutely! The tee command in Unix and Linux systems is used to read from standard input and write to both standard output (displaying it on the terminal) and one or more files simultaneously. It's like a "T" junction that splits the input data stream, allowing you to see the output while also saving it to a file.
+```console
+# Basic Usage
+<command> | tee filename
+ls -l | tee output.txt
+
+# Append Mode
+# If you want to append the output to an existing file instead of overwriting it, you can use the -a (append) option:
+<command> | tee -a filename
+
+# Using tee to Discard Output
+<command> | tee /dev/null
+```
+
 ### Time (elaspsed)
 ```console
 # Output Explanation
