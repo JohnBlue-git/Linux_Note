@@ -134,11 +134,13 @@ git blame -M <filename>
 ### Branching & Merging
 ```console
 # List branches
-git branch <-a>
+git branch -a
+git branch -av
 # Create branch
 git branch <branchname>
 # Delete branch
 git branch -d <branchname>
+git branch -D <branchname>
 
 # Switch commit
 git checkout <commit>
@@ -148,6 +150,10 @@ git checkout <branchname>
 git checkout -b <newbranch>
 # Checkout and Create branch
 git checkout -t <origin/kirkstone> -b <my-kirkstone>
+# Clone remote branch
+git checkout -b <local_branch_name> origin/<branch_name>
+# !!! if "git branch -av" show remotes/insydegerrit/RC24.12
+git checkout -b  RC24.12 remotes/insydegerrit/RC24.12
 
 # To merge <feature-branch> into <main>
 git checkout <main>
@@ -182,6 +188,11 @@ git clone -b <branch> <url> <output folder name>
 # Update remote
 git push <remote> <branch>
 git push origin main
+# Update from feature branch
+# This command will create a review for your changes, and once the review is approved, it will be merged into the master branch by someone with the necessary permissions.
+git push origin <local feature branch>:refs/for/master
+# !!! if "git branch -av" show remotes/m/master
+git push insydegerrit  <local feature branch>:refs/for/master
 ```
 ### git cherry-pick
 ```console
@@ -221,6 +232,11 @@ git reset --mixed HEAD~1
 # Discards all changes and staged files. 
 git reset --hard <commit>
 git reset --hard HEAD~1
+# If you have run git reset --hard HEAD and still see uncommitted changes with git status, it likely means there are changes in your working directory that are being tracked by Git but are not affected by the reset command.
+# Use git clean -f to remove untracked files
+git clean -f
+# Check for ignored files: Sometimes, .gitignore files can cause files to be ignored by Git. These files will not be affected by git reset --hard. This command will remove all untracked and ignored files, so use it with caution.
+git clean -fdx
 
 # Unstages <file>, but preserves its contents. git reset HEAD index.html
 git reset HEAD <file>:
