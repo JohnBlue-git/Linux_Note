@@ -1034,6 +1034,35 @@ sshpass -p <password> ssh <user>@<host>
 ssh -o StrictHostKeyChecking=no -l <user> <host>
 ```
 
+### SSDP
+The Simple Service Discovery Protocol (SSDP) is a network protocol based on the Internet protocol suite for advertisement and discovery of network services and presence information.
+- It accomplishes this without assistance of server-based configuration mechanisms, such as Dynamic Host Configuration Protocol (DHCP) or Domain Name System (DNS), and without special static configuration of a network host.
+- SSDP is the basis of the discovery protocol of Universal Plug and Play (UPnP) and is intended for use in residential or small office environments.
+
+To check for available SSDP services without writing code via gssdp-discover:
+```console
+# Install gSSDP (if you haven't already):
+sudo apt-get install gssdp
+
+# Run gssdp-discover
+#   This will send an SSDP M-SEARCH request
+#   to the default multicast address 239.255.255.250 and port 1900
+#   , and it will display information about any available devices or services that respond.
+gssdp-discover
+
+# You should see something like this if SSDP devices are found:
+# Found service:
+#  Location: http://192.168.1.100:8080/device
+#  USN: uuid:12345678-1234-5678-1234-567812345678
+#  Server: UPnP/1.0, Device/1.0
+# Additional options: You can specify the search target (for example, a particular service type) by using the -s option. For example:
+
+# This searches for all devices or services that are advertising themselves over SSDP.
+gssdp-discover -s ssdp:all
+
+# If you want to use the eth0 interface for sending the SSDP discovery request
+gssdp-discover -i eth0
+```
 
 
 # Special
