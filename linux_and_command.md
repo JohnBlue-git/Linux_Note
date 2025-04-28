@@ -447,7 +447,55 @@ rm -rf !(one|two|three)
 ```
 </details>
 
+### watch
+The watch command runs a specified command repeatedly at a set interval.
+```console
+# To run the ls command every 2 seconds:
+watch -n 2 ls
+```
 
+### wc - Count how many keys in json
+This method use grep to find keys and use wc to count them.
+```console
+grep -o '"[^"]*":' <json file> | wc -l
+```
+
+### Monitor the thread count of a proces
+To get number of threads
+```console
+# 1.
+# where nlwp stands for Number of Light Weight Processes (threads). 
+ps -o nlwp <pid>
+ps -eo nlwp | tail -n +2 | awk '{ num_threads += $1 } END { print num_threads }'
+
+# 2.
+ps -o thcount <pid>
+
+# 3.
+ps -T -p <pid>
+
+# 4.
+# Check via  /proc filesystem
+# by pid
+ls /proc/<pid>/task | wc -l
+# by name
+ls /proc/$(pgrep -n your_process_name)/task | wc -l
+```
+To monitor the thread count, simply use watch:
+```console
+# 1.
+watch -n 1 ps -o nlwp <pid>
+
+# 2.
+watch -n 1 ps -o thcount <pid>
+
+# 3
+watch -n 1 ps -T -p <pid>
+
+# 4 Check via  /proc filesystem
+watch -n 1 ls /proc/<pid>/task | wc -l
+watch -n 1ls /proc/$(pgrep -n your_process_name)/task | wc -l
+```
 
 ## Edit text
 
