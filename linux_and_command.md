@@ -213,6 +213,11 @@ Key Differences
 ps -ef | grep -i <...>
 
 kill -9 <pid>
+
+# To kill all processes related to :
+#   xargs kill -9 :
+#    Passes the PIDs and forcefully terminating them ( sends the SIGKILL signal).
+ps -ef | grep yujen | grep <related to> | awk '{print $2}' | xargs kill -9
 ```
 </details>
 
