@@ -573,10 +573,112 @@ unison -batch ssh://<account>@<ip>//source/ ./target/
 unison -batch -confirmbigdel=false ssh://<account>@<ip>//source/ ./target/
 ```
 
-### wget (handles FTP downloads)
+### curl
+basic usage
 ```console
-# -r for recursive download, a default maximum recursion depth of 5
-wget -r --user="user@login" --password="..." ftp://server.com/
+# basic usage 
+curl --help
+# Usage: curl [options...] <url>
+# -d, --data <data>          HTTP POST data
+# -f, --fail                 Fail silently (no output at all) on HTTP errors
+# -h, --help <category>      Get help for commands
+# -i, --include              Include protocol response headers in the output
+# -o, --output <file>        Write to file instead of stdout
+# -O, --remote-name          Write output to a file named as the remote file
+# -s, --silent               Silent mode
+# -T, --upload-file <file>   Transfer local FILE to destination
+# -u, --user <user:password> Server user and password
+# -A, --user-agent <name>    Send User-Agent <name> to server
+# -v, --verbose              Make the operation more talkative
+# -V, --version              Show version number and quit
+
+# get
+curl -X GET "http://www.example.com/api/resources"
+curl -X GET "http://www.example.com/api/resources/1"
+
+# patch
+curl -X POST \
+-H "Content-Type: application/json" \
+-d '{"status" : false, "name" : "Jack"}' \
+"http://www.example.com/api/resources"
+
+# put
+curl -X PUT \
+-H "Content-Type: application/json" \
+-d '{"status" : false }' \
+"http://www.example.com/api/resources"
+
+# delete
+curl -X DELETE "http://www.example.com/api/resources/1"
+
+# with cookie
+curl --cookie "name=John" "http://www.example.com"
+
+# with user agent
+curl --user-agent "Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)" "http://www.example.com"
+
+# with basic auth
+curl -u <user>:<password> "http://www.example.com/api/resources/1"
+```
+request with attachments or download attachments
+```console
+# -d command-line option
+#   will force Curl to submit data to the server using the application/x-www-form-urlencoded format. 
+#   (the keys and values are encoded in key-value tuples separated by an ampersand (&), with an equals symbol (=) between the key and the value)
+curl -X POST \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "status=false&name=Jack" \
+"http://www.example.com/api/resources"
+
+# --data-binary command-line option
+curl -X POST \
+-H "Content-Type: application/octet-stream" \
+--data-binary @<file name> \
+"http://www.example.com/api/resources"
+
+# -F command-line option
+#  tells Curl to send data to the server in multipart/form-data format.
+curl -X POST \
+-H "Content-Type: multipart/form-data" \
+-F "file=@<file name>" \
+"http://www.example.com/api/resources"
+```
+curl command on windows
+```console
+$ & "C:\Program Files\Git\mingw64\bin\curl.exe" -k -X POST \
+--data-binary @<file name> \
+--header "Content-Type: application/octet-stream" \
+"http://www.example.com/api/resources"
+```
+
+### wget
+basic usage
+```console
+# Help
+wget -h
+
+# Download a File
+wget http://example.com/file.zip
+
+# Download a File with a Custom Name
+wget -O custom_name.zip http://example.com/file.zip
+
+# Download Multiple Files from a List
+# Where `urls.txt` contains multiple URLs, one per line.
+wget -i urls.txt
+
+# Resume Interrupted Downloads
+wget -c http://example.com/file.zip
+
+# Download an Entire Website (Recursive Mode)
+wget -r http://example.com/
+
+# Set Download Speed Limits
+# This restricts the download speed to `500 KB/s`.
+wget --limit-rate=500k http://example.com/file.zip
+
+# Download with Authentication
+wget --user=username --password=password http://example.com/protected-file.zip
 ```
 
 ## Remote Mount
