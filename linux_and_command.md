@@ -484,7 +484,7 @@ ps -T -p <pid>
 # by pid
 ls /proc/<pid>/task | wc -l
 # by name
-ls /proc/$(pgrep -n your_process_name)/task | wc -l
+ls /proc/$(pgrep -n <your_process_name>)/task | wc -l
 ```
 To monitor the thread count, simply use watch:
 ```console
@@ -499,7 +499,7 @@ watch -n 1 ps -T -p <pid>
 
 # 4 Check via  /proc filesystem
 watch -n 1 ls /proc/<pid>/task | wc -l
-watch -n 1ls /proc/$(pgrep -n your_process_name)/task | wc -l
+watch -n 1 ls /proc/$(pgrep -n <your_process_name>)/task | wc -l
 ```
 
 ## Edit text
