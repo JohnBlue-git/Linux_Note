@@ -498,8 +498,8 @@ watch -n 1 ps -o thcount <pid>
 watch -n 1 ps -T -p <pid>
 
 # 4 Check via  /proc filesystem
-watch -n 1 ls /proc/<pid>/task | wc -l
-watch -n 1 ls /proc/$(pgrep -n <your_process_name>)/task | wc -l
+watch -n 1 'ls /proc/<pid>/task | wc -l'
+watch -n 1 'ls /proc/$(pgrep -n <your_process_name>)/task | wc -l'
 ```
 
 ## Edit text
