@@ -859,12 +859,13 @@ Creates an archive by bundling files and directories together.
 tar -xvpf archive.tar -C /path/to/directory
 ```
 Flattern the folder ot files to be compressed (Only for GNU tar)
-:GNU tar (common on Linux)
+\
+GNU tar (common on Linux):
 * use '--transform'
 * ```console
   tar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
   ```
-:BSD tar (used by default on macOS and some BSD systems)
+BSD tar (used by default on macOS and some BSD systems):
 * on Mac, we can install GNU tar via Homebrew
 * ```console
   brew install gnu-tar
