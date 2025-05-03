@@ -859,17 +859,17 @@ Creates an archive by bundling files and directories together.
 tar -xvpf archive.tar -C /path/to/directory
 ```
 Flattern the folder ot files to be compressed (Only for GNU tar)
-* GNU tar (common on Linux)
-      * use '--transform'
-      ```console
-      tar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
-      ```
-* BSD tar (used by default on macOS and some BSD systems)
-      * on Mac, we can install GNU tar via Homebrew
-      ```console
-      brew install gnu-tar
-      gtar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
-      ```
+:GNU tar (common on Linux)
+* use '--transform'
+* ```console
+  tar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
+  ```
+:BSD tar (used by default on macOS and some BSD systems)
+* on Mac, we can install GNU tar via Homebrew
+* ```console
+  brew install gnu-tar
+  gtar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
+  ```
 Concatenates multiple archive files into a single archive
 ```console
 tar -Af main.tar additional1.tar additional2.tar
@@ -1046,13 +1046,6 @@ time --verbose <your_command>
 https://stackoverflow.com/questions/18215389/how-do-i-measure-request-and-response-times-at-once-using-curl
 ```
 
-### usb access with minicom
-```console
-# minicom
-minicom -wD /dev/ast2600evb.1021
-"ctrl a + x"
-```
-
 ### remote access with ssh
 ```console
 # ssh
@@ -1105,6 +1098,11 @@ gssdp-discover -i eth0
 
 ## minicom
 Minicom is a text-based terminal emulator that is used for serial communication. It is particularly useful for debugging and configuring hardware devices like routers, switches, and embedded systems that communicate over serial ports.
+```console
+# minicom
+minicom -wD /dev/ast2600evb.1021
+"ctrl a + x"
+```
 <details>
 <summary>basic usage</summary>
 
