@@ -826,24 +826,53 @@ ls ~/bin # /usr/local/bin or /usr/john/bin
 ```
 
 ### compress (tar)
+Creating the Archive
 ```console
-1. **Creating the Archive**:
-tar -cvpf archive.tar /path/to/directory`
-    - **`c`**: Create a new archive.
-    - **`v`**: Verbose mode, shows the progress in the terminal.
-    - **`p`**: Preserve permissions.
-    - **`f`**: Specify the filename of the archive.
-
-2. **Extracting the Archive**:
-tar -xvpf archive.tar`    
-    - **`x`**: Extract the archive.
-    - **`v`**: Verbose mode.
-    - **`p`**: Preserve permissions.
-    - **`f`**: Specify the filename of the archive.
-    - z: 存取 .tar.gz 格式的套件為「gzip」，此格式會進行打包並且壓縮。
-
-3. To view the contents of a tar file in Linux without extracting it,
+tar -cvpf archive.tar <array of files>
+    - `c`: Create a new archive.
+    - `v`: Verbose mode, shows the progress in the terminal.
+    - `p`: Preserve permissions.
+    - `f`: Specify the filename of the archive.
+```
+Extracting the Archive
+```console
+tar -xvpf archive.tar -C /path/to/directory
+    - `x`: Extract the archive.
+    - `v`: Verbose mode.
+    - `p`: Preserve permissions.
+    - `f`: Specify the filename of the archive.
+```
+To view the contents of a tar file in Linux without extracting it
+```console
 tar -tf filename.tar.gz
+```
+Type of compression
+```console
+tar -cvzpf archive.tar.gz <array of files>
+    ‘-z’: Uses gzip compression.
+tar -cvjpf archive.tar.tbz <array of files>
+    ‘-j’: Uses bzip2 compression.
+```
+Creates an archive by bundling files and directories together.
+```console
+# extarct to /path/to/directory
+tar -xvpf archive.tar -C /path/to/directory
+```
+Flattern the folder ot files to be compressed (Only for GNU tar)
+- GNU tar (common on Linux)
+      - use '--transform'
+      ```console
+      tar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
+      ```
+- BSD tar (used by default on macOS and some BSD systems)
+      - on Mac, we can install GNU tar via Homebrew
+      ```console
+      brew install gnu-tar
+      gtar --transform='s|.*/||' -czf flat.tar.gz </path/to/directory/*>
+      ```
+Concatenates multiple archive files into a single archive
+```console
+tar -Af main.tar additional1.tar additional2.tar
 ```
 
 ### compress (zip)
@@ -853,6 +882,13 @@ zip -r file data/*
 
 # 用 unzip 將 file.zip 壓縮檔內所有檔案及目錄解壓到當前目錄:
 unzip file.zip
+```
+
+### compress (xz)
+A relative newcomer to the compression scene, the `xz` command is recognized for its impressive compression capabilities. While it might take longer for large files, the compression results are noteworthy
+```console
+# The <bigfile>.xz`showcases the compressed version of the file. `xz`
+xz [options] <bigfile>
 ```
 
 ### systemctl / service
