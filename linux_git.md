@@ -164,14 +164,31 @@ git merge --no-ff <feature-branch>
 ```
 ### Remote Repositories
 ```console
-# list remotes
+# What does `origin` mean in Git?
+# `origin` is just a **default name** Git uses for the **remote repository** you cloned from.
+# You can inspect your remotes with:
 git remote -v
-or
-git branch -r
+# origin  https://android.googlesource.com/platform/frameworks/base (fetch)
+# origin  https://android.googlesource.com/platform/frameworks/base (push)
+# * The remote is called `origin`
+# * Its URL is `https://...`
+# * It's used for both fetching and pushing
+
 # add a remote repository
 git remote add <new branch name> <url>
 
+# Rename a remote
+git remote rename <old> <new>
+
+# Change remote URL
+git remote set-url <name> <url>
+
+# list remotes
+git branch -r
+
 # Download objects and refs from another repository
+# Does not merge anything into your current branch
+# Does not switch your branch or modify files
 git fetch <remote>
 
 # Fetch from and integrate with another repository or a local branch.
