@@ -880,51 +880,44 @@ A relative newcomer to the compression scene, the `xz` command is recognized for
 xz [options] <bigfile>
 ```
 
-### systemctl / service
-systemctl
+### systemctl
+basic
 ```console
-# basic
 systemctl status <service>
 systemctl start <service>
 systemctl stop <service>
 systemctl restart <service>
-
-# To inspect nice value limits and capabilities for a given service:
+```
+To inspect nice value limits and capabilities for a given service:
+```console
 systemctl show <service name> | grep -i nice
-# Example Output:
-# LimitNICE=0 LimitNICESoft=0 Nice=0
-# CapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
-
-# Explanation of Output:
-# - **LimitNICE=0**  
-#  This sets the hard limit on the nice priority of the service. A hard limit is enforced by the kernel and cannot exceed `0`.
-# - **LimitNICESoft=0**  
-#  This sets the soft limit on the nice priority of the service. The soft limit can be raised up to the hard limit.
-# - **Nice=0**  
-#  The current nice value of the service.
-# - **CapabilityBoundingSet=...**  
-#  This long list specifies the capabilities that the service is allowed to use. Capabilities provide fine-grained privileges without granting full root access. Some notable ones include:
-#  - `cap_chown`: Allows changing file ownership.
-#  - `cap_dac_override`: Overrides filesystem discretionary access control.
-#  - `cap_net_bind_service`: Allows binding to privileged ports.
-#  - `cap_sys_time`: Allows changing the system clock.
-#  - The presence of `cap_sys_nice` means the service can change its nice value dynamically.
-
-# Which are the same as using `ps`
+```
+Example Output:
+```console
+LimitNICE=0 LimitNICESoft=0 Nice=0
+CapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
+```
+Explanation of Output:
+- **LimitNICE=0**  
+  This sets the hard limit on the nice priority of the service. A hard limit is enforced by the kernel and cannot exceed `0`.
+- **LimitNICESoft=0**  
+  This sets the soft limit on the nice priority of the service. The soft limit can be raised up to the hard limit.
+- **Nice=0**  
+  The current nice value of the service.
+- **CapabilityBoundingSet=...**  
+  This long list specifies the capabilities that the service is allowed to use. Capabilities provide fine-grained privileges without granting full root access. Some notable ones include:
+  - `cap_chown`: Allows changing file ownership.
+  - `cap_dac_override`: Overrides filesystem discretionary access control.
+  - `cap_net_bind_service`: Allows binding to privileged ports.
+  - `cap_sys_time`: Allows changing the system clock.
+  - The presence of `cap_sys_nice` means the service can change its nice value dynamically.
+\
+Which can also be reveal using `ps`
 # with options:
 #  -eo pid,ni,comm: Specifies the format to display the process ID (PID), nice value (NI), and command (COMM).
 #  --sort=-ni: Sorts the output by nice value in descending order.
-ps -eo pid,ni,comm --sort=-ni
-```
-service (newer version of systemctl)
 ```console
-# basic
-service <service> status
-service <service> start
-service <service> stop
-service <service> restart
-
-# ...
+ps -eo pid,ni,comm --sort=-ni
 ```
 
 ### crontab
