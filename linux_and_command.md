@@ -189,18 +189,6 @@ https://emmielin.medium.com/dns-查詢流程概念筆記-3a420460d396
 ![Untitled](https://github.com/user-attachments/assets/23181e67-5306-4ad8-9f52-67585cb0e20d)
 
 
-## Systemd vs Systemctl
-
-Systemd and Systemctl are two essential components in the Linux operating system, often used interchangeably but serving different purposes.
-- Systemd is a system and service manager responsible for initializing the system, managing services, and handling system events. It replaces the traditional SysV init system and provides a more efficient and reliable way to manage system services. Systemd uses unit files to define how services should be started, stopped, and managed. These unit files specify the behavior of each service, including its dependencies, startup order, and resource limits
-- Systemctl, on the other hand, is a command-line utility used to manage system services in Linux. It is part of the Systemd system and service manager. With Systemctl, users can start, stop, restart, enable, disable, and check the status of services running on their system. It provides a simple and efficient way to manage system services without the need for complex commands
-
-Key Differences
-- Purpose: Systemd: Manages the system's boot process, handles daemons, and manages system services. Systemctl: Interacts with Systemd to control services.
-- Functionality: Systemd: Responsible for initializing the system, starting services in parallel, and monitoring system resources. Systemctl: Used to start, stop, restart, enable, disable, and check the status of services.
-- Unit Files: Systemd: Uses unit files to define how services should be managed. Systemctl: Reads these unit files to determine how to handle each service.
-- Advanced Features: Systemd: Supports socket activation, which allows services to be started on-demand when a connection is made to a specific socket. It also provides tools for managing system resources, such as cgroups, which allow users to set resource limits for services and prevent resource contention^2^. Systemctl: Provides detailed information about each service, including its status, PID, memory usage, and more
-
 
 # Common command
 
@@ -893,40 +881,50 @@ xz [options] <bigfile>
 ```
 
 ### systemctl / service
+systemctl
 ```console
-# systemctl
+# basic
 systemctl status <service>
 systemctl start <service>
 systemctl stop <service>
 systemctl restart <service>
 
-# service
+# To inspect nice value limits and capabilities for a given service:
+systemctl show <service name> | grep -i nice
+# Example Output:
+# LimitNICE=0 LimitNICESoft=0 Nice=0
+# CapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore
+
+# Explanation of Output:
+# - **LimitNICE=0**  
+#  This sets the hard limit on the nice priority of the service. A hard limit is enforced by the kernel and cannot exceed `0`.
+# - **LimitNICESoft=0**  
+#  This sets the soft limit on the nice priority of the service. The soft limit can be raised up to the hard limit.
+# - **Nice=0**  
+#  The current nice value of the service.
+# - **CapabilityBoundingSet=...**  
+#  This long list specifies the capabilities that the service is allowed to use. Capabilities provide fine-grained privileges without granting full root access. Some notable ones include:
+#  - `cap_chown`: Allows changing file ownership.
+#  - `cap_dac_override`: Overrides filesystem discretionary access control.
+#  - `cap_net_bind_service`: Allows binding to privileged ports.
+#  - `cap_sys_time`: Allows changing the system clock.
+#  - The presence of `cap_sys_nice` means the service can change its nice value dynamically.
+
+# Which are the same as using `ps`
+# with options:
+#  -eo pid,ni,comm: Specifies the format to display the process ID (PID), nice value (NI), and command (COMM).
+#  --sort=-ni: Sorts the output by nice value in descending order.
+ps -eo pid,ni,comm --sort=-ni
+```
+service (newer version of systemctl)
+```console
+# basic
 service <service> status
 service <service> start
 service <service> stop
 service <service> restart
 
-# Example service configuraition file
-# /etc/systemd/system/.../bmcweb.service
-[Unit]
-Description=Start bmcweb server
-
-Wants=network.target
-After=network.target
-Wants=rcmd.service
-After=rcmd.service
-Wants=phosphor-ipmi-host.service
-After=phosphor-ipmi-host.service
-PartOf=rcmd.service
-
-[Service]
-ExecReload=kill -s HUP $MAINPID
-ExecStart=/usr/bin/bmcweb
-Type=simple
-WorkingDirectory=/home/root
-
-[Install]
-WantedBy=network.target
+# ...
 ```
 
 ### crontab
